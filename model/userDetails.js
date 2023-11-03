@@ -13,7 +13,7 @@ const userDetailsSchema = sequelize.define("User_Details", {
     userId: {
         type: Sequelize.INTEGER,
         references: {
-            model: Users,
+            model: "Users",
             key: "id",
         },
     },
@@ -50,14 +50,14 @@ const userDetailsSchema = sequelize.define("User_Details", {
     careerInfo: {
         type: Sequelize.INTEGER,
         references: {
-            model: CareerInfo,
+            model: "CareerInfo",
             key: "id",
         },
     },
     personalInfo: {
         type: Sequelize.INTEGER,
         references: {
-            model: PersonalInfo,
+            model: "PersonalInfo",
             key: "id",
         },
     },
@@ -67,12 +67,10 @@ userDetailsSchema.belongsTo(Users, {
     foreignKey: "userId",
     onDelete: "CASCADE",
 });
-
 userDetailsSchema.belongsTo(CareerInfo, {
     foreignKey: "careerInfo",
     onDelete: "CASCADE",
 });
-
 userDetailsSchema.belongsTo(PersonalInfo, {
     foreignKey: "personalInfo",
     onDelete: "CASCADE",

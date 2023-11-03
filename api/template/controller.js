@@ -40,10 +40,10 @@ module.exports = {
 
             return res
                 .status(201)
-                .send({ message: "File has been successfully uploaded" });
+                .send({success: 1,  message: "File has been successfully uploaded" });
         } catch (error) {
             console.error("Error:", error);
-            res.status(500).json({ error: error.message });
+            res.status(500).json({ success: 0, error: error.message });
         }
     },
     index: async (req, res) => {

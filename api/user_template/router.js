@@ -1,6 +1,6 @@
 const router = require("express").Router();
-const { formEight } = require("./controller");
+const { show } = require("./controller");
 
-router.post("/input-eight", formEight);
+router.get("/:userId", show);
 
 module.exports = router;

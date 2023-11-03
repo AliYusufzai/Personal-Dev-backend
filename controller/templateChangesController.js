@@ -23,7 +23,7 @@ const getUserTemplate = async (req, res) => {
         const favouriteArray = userData.favourite;
         if (favouriteArray.length === 0) {
             return res
-                .status(404)
+                .status(404)    
                 .json({ message: "No Favourite template found" });
         }
         const mostRecent = favouriteArray[favouriteArray.length - 1];

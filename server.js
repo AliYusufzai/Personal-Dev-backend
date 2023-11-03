@@ -7,6 +7,7 @@ const formOneRoute = require("./routes/formOneRoute");
 const templateChangeRoute = require("./routes/templateChangesRoute");
 const templateRoute = require("./api/template/router");
 const formInputRoute = require("./api/form_inputs/router");
+const userTemplateRoute = require("./api/user_template/router");
 const qs = require("qs");
 const sequelize = require("./config/database");
 const userDetails = require("./model/userDetails");
@@ -40,10 +41,11 @@ app.use((req, res, next) => {
 });
 
 app.use("/getstarted", formOneRoute);
-app.use("/form", formInputRoute);
 // app.use("/upload", templateRoute);
-app.use("/change", templateChangeRoute);
+// app.use("/change", templateChangeRoute);
 app.use("/template", templateRoute);
+app.use("/form", formInputRoute);
+app.use("/template-change", userTemplateRoute);
 
 app.listen(process.env.PORT, () => {
     console.log(`Server is running on ${process.env.PORT}`);
