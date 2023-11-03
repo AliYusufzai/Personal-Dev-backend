@@ -2,8 +2,8 @@ const path = require("path");
 const Template = require("../model/template");
 const cloudinary = require("../middleware/cloudinaryConfig");
 const User = require("../model/user");
-const BackInfo = require("../model/background");
-const BackInfoTwo = require("../model/backgroundTwo");
+const BackInfo = require("../model/careerInfo");
+const BackInfoTwo = require("../model/personalInfo");
 
 //ADMIN API
 // const fileUpload = async (req, res) => {

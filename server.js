@@ -1,30 +1,34 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
-// const port = 3000;
 const cors = require("cors");
-const mongoose = require("mongoose");
 const formOneRoute = require("./routes/formOneRoute");
 // const templateRoute = require("./routes/templateRoute");
 const templateChangeRoute = require("./routes/templateChangesRoute");
 const templateRoute = require("./api/template/router");
+const formInputRoute = require("./api/form_inputs/router");
 const qs = require("qs");
+const sequelize = require("./config/database");
+const userDetails = require("./model/userDetails");
 
-// const MONGO_URL = "";
-
-const connection = async () => {
-    try {
-        await mongoose.connect(process.env.MONGO_URL, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        });
-        console.log("Connected to Database");
-    } catch (error) {
-        console.error("Error connecting to the database", error.message);
-    }
-};
-
-connection();
+sequelize
+    .authenticate()
+    .then(() => {
+        console.log(
+            "Connection to the database has been established successfully."
+        );
+        sequelize
+            .sync()
+            .then(() => {
+                console.log("Database and tables have been created!");
+            })
+            .catch((syncError) => {
+                console.error("Error synchronizing models:", syncError);
+            });
+    })
+    .catch((authError) => {
+        console.error("Unable to connect to the database: ", authError);
+    });
 
 app.use(cors());
 
@@ -36,9 +40,10 @@ app.use((req, res, next) => {
 });
 
 app.use("/getstarted", formOneRoute);
+app.use("/form", formInputRoute);
 // app.use("/upload", templateRoute);
 app.use("/change", templateChangeRoute);
-app.use("/upload", templateRoute);
+app.use("/template", templateRoute);
 
 app.listen(process.env.PORT, () => {
     console.log(`Server is running on ${process.env.PORT}`);

@@ -1,5 +1,5 @@
 const User = require("../model/user");
-const Background = require("../model/background");
+const Background = require("../model/careerInfo");
 
 const formOne = async (req, res) => {
     const { name, email, phonenumber } = req.body;

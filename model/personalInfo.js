@@ -1,33 +1,28 @@
-const Sequelize = require("sequelize");
 const sequelize = require("../config/database");
+const Sequelize = require("sequelize");
 
-const templateSchema = sequelize.define("Templates", {
+const personalInfoSchema = sequelize.define("Personal_Info", {
     id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
     },
-    templateName: {
+    language: {
         type: Sequelize.STRING,
         allowNull: false,
     },
-    html: {
-        type: Sequelize.JSON,
-        allowNull: false,
-    },
-    css: {
-        type: Sequelize.JSON,
-        allowNull: false,
-    },
-    image: {
+    country: {
         type: Sequelize.STRING,
         allowNull: false,
     },
-    isdeleted: {
-        type: Sequelize.INTEGER,
-        defaultValue: 0,
+    state: {
+        type: Sequelize.STRING,
+        allowNull: false,
+    },
+    city: {
+        type: Sequelize.STRING,
+        allowNull: false,
     },
 });
 
-
-module.exports = templateSchema;
+module.exports = personalInfoSchema;
