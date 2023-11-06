@@ -3,9 +3,12 @@ const Users = require("../../model/user");
 const CareerInfo = require("../../model/careerInfo");
 const PersonalInfo = require("../../model/personalInfo");
 const Template = require("../../model/template");
-const { exec } = require("child_process");
-const fsPromises = require("fs/promises");
-const fileCreation = require("../../middleware/fileConfig");
+const cloudinary = require("../../middleware/cloudinaryConfig");
+const UserTemplate = require("../../model/userTemplate");
+const cheerio = require("cheerio");
+//const { exec } = require("child_process");
+//const fsPromises = require("fs/promises");
+//const fileCreation = require("../../middleware/fileConfig");
 
 module.exports = {
     show: async (req, res) => {
@@ -57,16 +60,161 @@ module.exports = {
     update: async (req, res) => {
         try {
             const { user, userDetails, data } = req.body;
-            
+            let userTemplateEntry;
+
             const { html, css } = data;
-            const parsedHtml = JSON.parse(html);
-            const parsedCss = JSON.parse(css);
+            let parsedHtml = JSON.parse(html);
+            let parsedCss = JSON.parse(css);
             const fileName = data.templateName;
 
-            const filePath = await fileCreation(parsedHtml, parsedCss, fileName);
-            const fileContent = await fsPromises.readFile(filePath, "utf-8");
+            // const filePath = await fileCreation(
+            //     parsedHtml,
+            //     parsedCss,
+            //     fileName
+            // );
+            // let fileContent = await fsPromises.readFile(filePath, "utf-8");
 
-            res.status(201).json({ success: 1, fileContent });
+            const unnestedUserData = {
+                ...user,
+                ...userDetails,
+                ...userDetails.Career_Info,
+                ...userDetails.Personal_Info,
+            };
+            for (const key in unnestedUserData) {
+                if (unnestedUserData.hasOwnProperty(key)) {
+                    const placeholder = `{{${key}}}`;
+                    const replacement = unnestedUserData[key];
+                    parsedHtml = parsedHtml.replace(
+                        new RegExp(placeholder, "g"),
+                        replacement
+                    );
+                }
+            }
+            // await fsPromises.writeFile(filePath, fileContent, "utf-8");
+            //console.log("updated content: ", parsedHtml);
+
+            const userTemplate = await UserTemplate.findOne({
+                where: { templateId: data.id },
+            });
+            if (userTemplate) {
+                userTemplateEntry = await userTemplate.update({
+                    userId: user.id,
+                    templateName: fileName,
+                    html: parsedHtml,
+                    css: parsedCss,
+                    image: data.image,
+                });
+            } else {
+                userTemplateEntry = new UserTemplate({
+                    userId: user.id,
+                    templateId: data.id,
+                    templateName: fileName,
+                    html: parsedHtml,
+                    css: parsedCss,
+                    image: data.image,
+                });
+                await userTemplateEntry.save();
+            }
+
+            return res.status(201).send({
+                success: 1,
+                message: "User Template has been successfully uploaded",
+            });
+        } catch (error) {
+            res.status(500).json({ success: 0, error: error.message });
+        }
+    },
+    open: async (req, res) => {
+        const { userId } = req.params;
+        try {
+            const userTemplate = await UserTemplate.findAll({
+                where: { userId },
+            });
+            if (!userTemplate) {
+                return res
+                    .status(404)
+                    .json({ message: "User-specific Template not found" });
+            }
+            const { html, css } = userTemplate[userTemplate.length - 1];
+
+            const $ = cheerio.load(html);
+            $("head").append(`<style>${css}</style>`);
+            const combinedContent = $.html();
+
+            res.set("Content-Type", "text/html");
+            res.status(200).send(combinedContent);
+        } catch (error) {
+            console.error(error.message);
+            res.status(500).json({ error: "An error occurred" });
+        }
+    },
+    display: async (req, res) => {
+        // try {
+        //     const { userFilePath } = req.query;
+        //     // console.log("userFilePath:", req.query.userFilePath);
+        //     if (!Array.isArray(userFilePath) || userFilePath.length === 0) {
+        //         throw new Error("There is no file found");
+        //     }
+        //     const getMostRecentFile = async (filePaths) => {
+        //         const fileStats = await Promise.all(
+        //             filePaths.map(async (filePath) => {
+        //                 const stats = await fsPromises.stat(filePath);
+        //                 return { filePath, mtimeMs: stats.mtimeMs };
+        //             })
+        //         );
+        //         return fileStats.reduce((prev, current) =>
+        //             prev.mtimeMs > current.mtimeMs ? prev : current
+        //         ).filePath;
+        //     };
+        //     const mostRecent = await getMostRecentFile(userFilePath);
+        //     const htmlContent = await fsPromises.readFile(mostRecent, "utf-8");
+        //     res.send(htmlContent);
+        // } catch (error) {
+        //     res.status(500).json({ success: 0, error: error.message });
+        // }
+    },
+    updateCss: async (req, res) => {
+        try {
+            const { user, templateId, cssData } = req.body;
+
+            let userTemplateEntry;
+            const template = await UserTemplate.findOne({
+                where: { templateId },
+            });
+            if (!template) {
+                return res
+                    .status(404)
+                    .json({ message: "User-specific Template not found" });
+            }
+
+            const { css } = template;
+            let parsedCss = JSON.parse(css);
+
+            for (const key in cssData) {
+                if (cssData.hasOwnProperty(key)) {
+                    const placeholder = `--${key}`;
+                    const value = cssData[key];
+                    const pattern = new RegExp(
+                        `(${placeholder}:\\s*)[^;]+;`,
+                        "g"
+                    );
+
+                    parsedCss = parsedCss.replace(pattern, `$1${value};`);
+                    console.log("parsed", parsedCss);
+                }
+            }
+
+            userTemplateEntry = await UserTemplate.update(
+                {
+                    css: parsedCss,
+                },
+                { where: { templateId } }
+            );
+
+            return res.status(201).send({
+                success: 1,
+                message: "User Template has been successfully uploaded",
+            });
         } catch (error) {
             res.status(500).json({ success: 0, error: error.message });
         }

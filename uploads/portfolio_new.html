@@ -1,9 +1,11 @@
-<html><head>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Portfolio</title>
-    
-<style>
+    <style>
         :root {
             --header-bg-color: #333;
             --header-text-color: #fff;
@@ -72,12 +74,13 @@
             background-color: #007bff;
             color: white;
         }
-    </style></head>
+    </style>
+</head>
 
 <body>
     <header class="header7182">
-        <h1 id="name">Ali</h1>
-        <p id="title">Financial</p>
+        <h1 id="name">{{username}}</h1>
+        <p id="title">{{industry}}</p>
     </header>
     <div class="navbar7182">
         <a class="active" href="#">Home</a>
@@ -89,25 +92,25 @@
     <div class="container">
         <h2>Contact Information</h2>
         <ul>
-            <li>Email: <span id="email">ali@gmail.com</span></li>
-            <li>Phone: <span id="phone">03162809012</span></li>
-            <li>Location: Karachi, Sindh, Pakistan</li>
-            <li>Language: English, Urdu</li>
+            <li>Email: <span id="email">{{email}}</span></li>
+            <li>Phone: <span id="phone">{{phone}}</span></li>
+            <li>Location: {{city}}, {{state}}, {{country}}</li>
+            <li>Language: {{language}}</li>
         </ul>
         <h2>Experience</h2>
-        <p id="experience">Three Years</p>
+        <p id="experience">{{experience}}</p>
         <h2>Skills</h2>
         <ul id="skills">
-            <li>"MS Word, MS Excel"</li>
+            <li>{{skills}}</li>
         </ul>
         <h2>Tools</h2>
         <ul id="tools">
-            <li>"Accounts ERP, Accounts Software"</li>
+            <li>{{tools}}</li>
         </ul>
     </div>
     <footer class="footer">
-        <p>© 2023. All rights reserved.</p>
+        <p>&copy; 2023. All rights reserved.</p>
     </footer>
+</body>
 
-
-</body></html>
+</html>

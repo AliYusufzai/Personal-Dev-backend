@@ -2,13 +2,9 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const formOneRoute = require("./routes/formOneRoute");
-// const templateRoute = require("./routes/templateRoute");
-const templateChangeRoute = require("./routes/templateChangesRoute");
 const templateRoute = require("./api/template/router");
 const formInputRoute = require("./api/form_inputs/router");
 const userTemplateRoute = require("./api/user_template/router");
-const qs = require("qs");
 const sequelize = require("./config/database");
 const userDetails = require("./model/userDetails");
 
@@ -31,18 +27,10 @@ sequelize
         console.error("Unable to connect to the database: ", authError);
     });
 
-app.use(cors());
-
+app.use("*", cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use((req, res, next) => {
-    req.query = qs.parse(req.query);
-    next();
-});
 
-app.use("/getstarted", formOneRoute);
-// app.use("/upload", templateRoute);
-// app.use("/change", templateChangeRoute);
 app.use("/template", templateRoute);
 app.use("/form", formInputRoute);
 app.use("/template-change", userTemplateRoute);

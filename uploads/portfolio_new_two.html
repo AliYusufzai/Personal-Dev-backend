@@ -1,13 +1,22 @@
-<html><head>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Portfolio</title>
-    
-<style>
+    <style>
         :root {
             --header-bg-color: #333;
             --header-text-color: #fff;
             --header-hover-color: #ddd;
+            --container-bg-color: #f5f5f5;
+            --container-text-color: #333;
+            --footer-bg-color: #333;
+            --footer-text-color: #fff;
+            --navbar-bg-color: #333;
+            --navbar-text-color: #fff;
+            --navbar-hover-color: #ddd;
         }
 
         body {
@@ -24,47 +33,36 @@
         }
 
         .container {
+            background-color: var(--container-bg-color);
+            color: var(--container-text-color);
             max-width: 800px;
             margin: 0 auto;
             padding: 2rem;
         }
 
-        h1 {
-            margin-bottom: 1rem;
-        }
-
-        ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        li {
-            margin-bottom: 0.5rem;
-        }
-
         footer {
-            background-color: var(--header-bg-color);
-            color: var(--header-text-color);
+            background-color: var(--footer-bg-color);
+            color: var(--footer-text-color);
             text-align: center;
             padding: 1rem 0;
         }
 
         .navbar7182 {
-            background-color: var(--header-bg-color);
+            background-color: var(--navbar-bg-color);
             overflow: hidden;
             text-align: center;
         }
 
         .navbar7182 a {
             display: inline-block;
-            color: white;
+            color: var(--navbar-text-color);
             text-align: center;
             padding: 14px 16px;
             text-decoration: none;
         }
 
         .navbar7182 a:hover {
-            background-color: var(--header-hover-color);
+            background-color: var(--navbar-hover-color);
             color: black;
         }
 
@@ -72,12 +70,13 @@
             background-color: #007bff;
             color: white;
         }
-    </style></head>
+    </style>
+</head>
 
 <body>
     <header class="header7182">
-        <h1 id="name">Ali</h1>
-        <p id="title">Financial</p>
+        <h1 id="name">{{username}}</h1>
+        <p id="title">{{industry}}</p>
     </header>
     <div class="navbar7182">
         <a class="active" href="#">Home</a>
@@ -89,25 +88,25 @@
     <div class="container">
         <h2>Contact Information</h2>
         <ul>
-            <li>Email: <span id="email">ali@gmail.com</span></li>
-            <li>Phone: <span id="phone">03162809012</span></li>
-            <li>Location: Karachi, Sindh, Pakistan</li>
-            <li>Language: English, Urdu</li>
+            <li>Email: <span id="email">{{email}}</span></li>
+            <li>Phone: <span id="phone">{{phone}}</span></li>
+            <li>Location: {{city}}, {{state}}, {{country}}</li>
+            <li>Language: {{language}}</li>
         </ul>
         <h2>Experience</h2>
-        <p id="experience">Three Years</p>
+        <p id="experience">{{experience}}</p>
         <h2>Skills</h2>
         <ul id="skills">
-            <li>"MS Word, MS Excel"</li>
+            <li>{{skills}}</li>
         </ul>
         <h2>Tools</h2>
         <ul id="tools">
-            <li>"Accounts ERP, Accounts Software"</li>
+            <li>{{tools}}</li>
         </ul>
     </div>
     <footer class="footer">
-        <p>© 2023. All rights reserved.</p>
+        <p>&copy; 2023. All rights reserved.</p>
     </footer>
+</body>
 
-
-</body></html>
+</html>

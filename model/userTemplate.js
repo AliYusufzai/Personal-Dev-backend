@@ -1,12 +1,48 @@
-const mongoose = require("mongoose");
+const sequelize = require("../config/database");
+const Sequelize = require("sequelize");
+const Users = require("./user");
+const Templates = require("./template");
 
-const userTemplateSchema = new mongoose.Schema({
-    userId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-        required: true,
+const userTemplateSchema = sequelize.define("User_Template", {
+    id: {
+        type: Sequelize.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
     },
-    templateFilePath: [{ type: String }],
+    userId: {
+        type: Sequelize.INTEGER,
+        references: {
+            model: "Users",
+            key: "id",
+        },
+    },
+    templateId: {
+        type: Sequelize.INTEGER,
+        references: {
+            model: "Templates",
+            key: "id",
+        },
+    },
+    templateName: {
+        type: Sequelize.STRING,
+        allowNull: false,
+    },
+    html: {
+        type: Sequelize.JSON,
+        allowNull: false,
+    },
+    css: {
+        type: Sequelize.JSON,
+        allowNull: false,
+    },
+    image: {
+        type: Sequelize.STRING,
+        allowNull: false,
+    },
+    isdeleted: {
+        type: Sequelize.INTEGER,
+        defaultValue: 0,
+    },
 });
 
-module.exports = mongoose.model("UserTemplate", userTemplateSchema);
+module.exports = userTemplateSchema;
