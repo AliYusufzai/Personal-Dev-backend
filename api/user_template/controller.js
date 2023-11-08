@@ -6,6 +6,8 @@ const Template = require("../../model/template");
 const cloudinary = require("../../middleware/cloudinaryConfig");
 const UserTemplate = require("../../model/userTemplate");
 const cheerio = require("cheerio");
+const { exec } = require("child_process");
+
 //const { exec } = require("child_process");
 //const fsPromises = require("fs/promises");
 //const fileCreation = require("../../middleware/fileConfig");
@@ -125,6 +127,41 @@ module.exports = {
         }
     },
     open: async (req, res) => {
+        const { templateId } = req.params;
+        try {
+            const userTemplate = await UserTemplate.findOne({
+                where: { templateId },
+            });
+            if (!userTemplate) {
+                return res
+                    .status(404)
+                    .json({ message: "User-specific Template not found" });
+            }
+
+            const { dataValues } = userTemplate;
+            let { html, css } = dataValues;
+            html = JSON.parse(html);
+            css = JSON.parse(css);
+
+            const $ = cheerio.load(html);
+            $("head").append(`<style>${css}</style>`);
+            const combinedContent = $.html();
+
+            exec(
+                `start "" "chrome.exe" --new-window "data:text/html,${encodeURIComponent(
+                    combinedContent
+                )}"`
+            );
+            return res.status(200).json({
+                message: "File opened in a new tab",
+                template: combinedContent,
+            });
+        } catch (error) {
+            console.error(error.message);
+            res.status(500).json({ error: "An error occurred" });
+        }
+    },
+    display: async (req, res) => {
         const { userId } = req.params;
         try {
             const userTemplate = await UserTemplate.findAll({
@@ -135,43 +172,25 @@ module.exports = {
                     .status(404)
                     .json({ message: "User-specific Template not found" });
             }
-            const { html, css } = userTemplate[userTemplate.length - 1];
+
+            let { templateId, html, css } =
+                userTemplate[userTemplate.length - 1];
+            html = JSON.parse(html);
+            css = JSON.parse(css);
 
             const $ = cheerio.load(html);
             $("head").append(`<style>${css}</style>`);
             const combinedContent = $.html();
 
             res.set("Content-Type", "text/html");
-            res.status(200).send(combinedContent);
+            res.status(200).send({
+                userTemplate: templateId,
+                template: combinedContent,
+            });
         } catch (error) {
             console.error(error.message);
             res.status(500).json({ error: "An error occurred" });
         }
-    },
-    display: async (req, res) => {
-        // try {
-        //     const { userFilePath } = req.query;
-        //     // console.log("userFilePath:", req.query.userFilePath);
-        //     if (!Array.isArray(userFilePath) || userFilePath.length === 0) {
-        //         throw new Error("There is no file found");
-        //     }
-        //     const getMostRecentFile = async (filePaths) => {
-        //         const fileStats = await Promise.all(
-        //             filePaths.map(async (filePath) => {
-        //                 const stats = await fsPromises.stat(filePath);
-        //                 return { filePath, mtimeMs: stats.mtimeMs };
-        //             })
-        //         );
-        //         return fileStats.reduce((prev, current) =>
-        //             prev.mtimeMs > current.mtimeMs ? prev : current
-        //         ).filePath;
-        //     };
-        //     const mostRecent = await getMostRecentFile(userFilePath);
-        //     const htmlContent = await fsPromises.readFile(mostRecent, "utf-8");
-        //     res.send(htmlContent);
-        // } catch (error) {
-        //     res.status(500).json({ success: 0, error: error.message });
-        // }
     },
     updateCss: async (req, res) => {
         try {
@@ -200,7 +219,6 @@ module.exports = {
                     );
 
                     parsedCss = parsedCss.replace(pattern, `$1${value};`);
-                    console.log("parsed", parsedCss);
                 }
             }
 
