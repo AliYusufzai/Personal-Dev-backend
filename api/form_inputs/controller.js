@@ -81,7 +81,6 @@ module.exports = {
                             message: "Template added to favorites",
                         });
                     } else {
-                        console.log("s", currentFavorites[fileIdStr]);
                         res.status(200).json({
                             success: 1,
                             message: "Template is already in favorites",

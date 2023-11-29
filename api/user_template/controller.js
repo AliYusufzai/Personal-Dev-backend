@@ -6,7 +6,9 @@ const Template = require("../../model/template");
 const cloudinary = require("../../middleware/cloudinaryConfig");
 const UserTemplate = require("../../model/userTemplate");
 const cheerio = require("cheerio");
-const { exec } = require("child_process");
+const { exec, spawn } = require("child_process");
+const path = require("path");
+const fs = require("fs");
 
 //const { exec } = require("child_process");
 //const fsPromises = require("fs/promises");
@@ -128,6 +130,9 @@ module.exports = {
     },
     open: async (req, res) => {
         const { templateId } = req.params;
+        const currentDate = new Date();
+        const formattedDate = currentDate.toISOString().replace(/[-:]/g, "")
+        let tempFileName = `temp${formattedDate}.html`;
         try {
             const userTemplate = await UserTemplate.findOne({
                 where: { templateId },
@@ -147,14 +152,20 @@ module.exports = {
             $("head").append(`<style>${css}</style>`);
             const combinedContent = $.html();
 
-            exec(
-                `start "" "chrome.exe" --new-window "data:text/html,${encodeURIComponent(
-                    combinedContent
-                )}"`
+            const tempFilePath = path.join(
+                __dirname,
+                "../../uploads",
+                tempFileName
             );
+            fs.writeFileSync(tempFilePath, combinedContent);
+            // exec(`start ${tempFilePath}`);
+
+            spawn("explorer", [tempFilePath]);
+
             return res.status(200).json({
                 message: "File opened in a new tab",
                 template: combinedContent,
+                downloadLink: `/download/${templateId}`,
             });
         } catch (error) {
             console.error(error.message);
