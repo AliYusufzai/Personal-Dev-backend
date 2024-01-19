@@ -6,13 +6,9 @@ const Template = require("../../model/template");
 const cloudinary = require("../../middleware/cloudinaryConfig");
 const UserTemplate = require("../../model/userTemplate");
 const cheerio = require("cheerio");
-const { exec, spawn } = require("child_process");
+const { spawn } = require("child_process");
 const path = require("path");
 const fs = require("fs");
-
-//const { exec } = require("child_process");
-//const fsPromises = require("fs/promises");
-//const fileCreation = require("../../middleware/fileConfig");
 
 module.exports = {
     show: async (req, res) => {
@@ -131,7 +127,7 @@ module.exports = {
     open: async (req, res) => {
         const { templateId } = req.params;
         const currentDate = new Date();
-        const formattedDate = currentDate.toISOString().replace(/[-:]/g, "")
+        const formattedDate = currentDate.toISOString().replace(/[-:]/g, "");
         let tempFileName = `temp${formattedDate}.html`;
         try {
             const userTemplate = await UserTemplate.findOne({
@@ -206,6 +202,8 @@ module.exports = {
     updateCss: async (req, res) => {
         try {
             const { user, templateId, cssData } = req.body;
+            console.log("user: ", user);
+            console.log("template: ", templateId);
 
             let userTemplateEntry;
             const template = await UserTemplate.findOne({

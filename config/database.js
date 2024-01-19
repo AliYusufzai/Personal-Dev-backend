@@ -15,13 +15,10 @@ const sequelize = new Sequelize(
 sequelize
     .authenticate()
     .then(() => {
-        console.log(
-            "Connection to the database has been established successfully."
-        );
         sequelize
             .sync()
             .then(() => {
-                console.log("Database and tables have been created!");
+                console.log("Database and tables have been Synched!");
             })
             .catch((syncError) => {
                 console.error("Error synchronizing models:", syncError);
