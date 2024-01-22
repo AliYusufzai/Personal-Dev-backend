@@ -9,6 +9,7 @@ const cheerio = require("cheerio");
 const { spawn } = require("child_process");
 const path = require("path");
 const fs = require("fs");
+const { Op } = require("sequelize");
 
 module.exports = {
     show: async (req, res) => {
@@ -67,13 +68,6 @@ module.exports = {
             let parsedCss = JSON.parse(css);
             const fileName = data.templateName;
 
-            // const filePath = await fileCreation(
-            //     parsedHtml,
-            //     parsedCss,
-            //     fileName
-            // );
-            // let fileContent = await fsPromises.readFile(filePath, "utf-8");
-
             const unnestedUserData = {
                 ...user,
                 ...userDetails,
@@ -90,8 +84,6 @@ module.exports = {
                     );
                 }
             }
-            // await fsPromises.writeFile(filePath, fileContent, "utf-8");
-            //console.log("updated content: ", parsedHtml);
 
             const userTemplate = await UserTemplate.findOne({
                 where: { templateId: data.id },
@@ -244,6 +236,45 @@ module.exports = {
             });
         } catch (error) {
             res.status(500).json({ success: 0, error: error.message });
+        }
+    },
+
+    makeStyleChangesInUserTemplate: async (req, res) => {
+        const { userId, templateId, content } = req.body;
+
+        const $ = cheerio.load(content);
+        const extractCss = $("style").html();
+        $("style").remove();
+        const htmlContent = $.html();
+
+        try {
+            const [userTemplate, created] = await UserTemplate.findOrCreate({
+                where: {
+                    userId: userId,
+                    templateId: templateId,
+                },
+                defaults: {
+                    html: htmlContent,
+                    css: extractCss,
+                },
+            });
+
+            if (!created) {
+                userTemplate.html = htmlContent;
+                userTemplate.css = extractCss;
+                await userTemplate.save();
+            }
+
+            res.status(201).json({
+                success: 1,
+                message: "Template saved successfully",
+            });
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({
+                success: 0,
+                message: "Internal server error",
+            });
         }
     },
 };
