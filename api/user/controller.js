@@ -43,12 +43,11 @@ module.exports = {
                     expiresIn: "3d",
                 }
             );
-            res.cookie("jwt", token, { httpOnly: true });
 
             res.status(200).send({
                 success: 1,
                 user: sanitizedUser,
-                token,
+                token: token,
                 message: "New user registered and logged in successfully.",
             });
         } catch (error) {
