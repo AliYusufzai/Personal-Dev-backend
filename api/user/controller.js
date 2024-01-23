@@ -12,21 +12,12 @@ module.exports = {
             let { email, password } = req.body;
             let existingUser = await Users.findOne({ where: { email } });
 
+            var salt = genSaltSync(10);
             if (!existingUser) {
-                const salt = genSaltSync(10);
                 password = hashSync(password, salt);
                 existingUser = await Users.create({ email, password });
             } else {
-                const passwordMatch = compareSync(
-                    password,
-                    existingUser.password
-                );
-
-                if (!passwordMatch) {
-                    return res
-                        .status(401)
-                        .json({ success: 0, message: "Invalid password" });
-                }
+                password = hashSync(password, salt);
             }
 
             const sanitizedUser = {
@@ -37,7 +28,7 @@ module.exports = {
             };
 
             const token = jwt.sign(
-                { userId: existingUser.id },
+                { existingUser: existingUser },
                 process.env.JWT_SEC,
                 {
                     expiresIn: "3d",

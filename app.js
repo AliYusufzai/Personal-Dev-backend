@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const cors = require("cors");
+const { checkToken } = require("./middleware/auth");
 
 const sequelize = require("./config/database");
 const userDetails = require("./model/userDetails");
@@ -13,6 +14,10 @@ const userRoute = require("./api/user/router");
 app.use("*", cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.get("/api/auth", checkToken, (req, res) => {
+    res.json({ isAuthenticated: true });
+});
 
 app.use("/template", templateRoute);
 app.use("/form", formInputRoute);
