@@ -18,6 +18,7 @@ module.exports = {
                 existingUser = await Users.create({ email, password });
             } else {
                 password = hashSync(password, salt);
+                await existingUser.save();
             }
 
             const sanitizedUser = {
@@ -28,10 +29,10 @@ module.exports = {
             };
 
             const token = jwt.sign(
-                { existingUser: existingUser },
+                { user: sanitizedUser },
                 process.env.JWT_SEC,
                 {
-                    expiresIn: "3d",
+                    expiresIn: 20,
                 }
             );
 

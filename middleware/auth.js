@@ -1,31 +1,36 @@
 require("dotenv").config();
-const jwt = require("jsonwebtoken");
+const { verify } = require("jsonwebtoken");
 
 module.exports = {
     checkToken: (req, res, next) => {
-        const token = req.header("Authorization");
-        if (!token) {
-            res.status(401).json({ success: 0, message: "Unauthorized" });
-        }
         try {
-            const decode = jwt.verify(
-                token,
-                process.env.JWT_SEC,
-                (error, decode) => {
+            let token = req.header("Authorization");
+
+            if (!token) {
+                return res
+                    .status(401)
+                    .json({ success: 0, message: "Unauthorized" });
+            } else {
+                token = token.split(" ")[1];
+                verify(token, process.env.JWT_SEC, (error, decode) => {
                     if (error) {
-                        return res.json({
+                        console.error("Could not verify: ", error.message);
+                        return res.status(401).json({
                             success: 0,
                             message: "Invalid Token",
                         });
                     } else {
-                        req.auth_user = decode.existingUser;
+                        req.auth_user = decode.user;
+                        //console.log("auth_user: ", req.auth_user);
                         next();
                     }
-                }
-            );
+                });
+            }
         } catch (error) {
-            console.log("Error: ", error.message);
-            return res.status(401).json({ message: "Invalid token" });
+            console.error("Error during authentication: ", error.message);
+            return res
+                .status(500)
+                .json({ success: 0, message: "Internal Server Error" });
         }
     },
 };
