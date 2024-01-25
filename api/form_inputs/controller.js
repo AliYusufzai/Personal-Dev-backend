@@ -65,14 +65,14 @@ module.exports = {
     },
     formThree: async (req, res) => {
         try {
-            const { userId, fileId } = req.body;
+            const { userId, selectFile } = req.body;
             const user = await UserDetails.findOne({
                 where: { userId: userId },
             });
             if (user) {
                 if (user) {
                     const currentFavorites = JSON.parse(user.favourite || "{}");
-                    const fileIdStr = fileId.toString();
+                    const fileIdStr = selectFile.toString();
                     if (!currentFavorites[fileIdStr]) {
                         currentFavorites[fileIdStr] = true;
                         await user.update({ favourite: currentFavorites });

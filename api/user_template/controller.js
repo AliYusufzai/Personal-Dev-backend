@@ -15,6 +15,7 @@ module.exports = {
     show: async (req, res) => {
         try {
             const { userId } = req.params;
+            console.log("userId: ", userId);
             let userDetails;
 
             const user = await Users.findOne({ where: { id: userId } });
@@ -30,6 +31,7 @@ module.exports = {
             }
 
             const favourite = JSON.parse(userDetails.favourite);
+            //console.log("fav: ", favourite);
             if (favourite.length === 0) {
                 return res.status(404).json({
                     success: 0,
@@ -38,10 +40,13 @@ module.exports = {
             }
             const keys = Object.keys(favourite);
             const mostRecent = keys[keys.length - 1];
+            //console.log("recent: ", mostRecent);
 
             const templateData = await Template.findOne({
                 where: { id: mostRecent },
             });
+
+            //console.log("templateData: ", templateData);
             if (!templateData) {
                 return res.status(404).json({
                     message: "Template not found for the most recent file",

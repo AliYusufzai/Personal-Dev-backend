@@ -1,0 +1,1082 @@
+<html><head>
+
+  <title>Ben's Resume - Profile HTML Page</title>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="author" content="Tooplate">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" integrity="sha512-b2QcS5SsA8tZodcDtGRELiGv5SaKSk1vDHDaQRda0htPYWZ6046lr3kJ5bAAQdpV2mmA/4v0wQF9MyU6/pDIAg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  
+<style>
+    /* Plain Regular */
+    @import url('https://fonts.googleapis.com/css2?family=Plain:wght@400&display=swap');
+
+    /* Plain Light */
+    @import url('https://fonts.googleapis.com/css2?family=Plain:wght@300&display=swap');
+
+    /* Plain Bold */
+    @import url('https://fonts.googleapis.com/css2?family=Plain:wght@700&display=swap');
+
+
+    :root {
+      --primary-color: #ffd500;
+      --white-color: #ffffff;
+      --dark-color: #010101;
+      --menu-bg-color: #212529;
+
+      --gray-color: #909090;
+      --p-color: #7d7a7a;
+
+      --base-font-family: "Plain", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+      --font-weight-bold: 600;
+      --font-weight-normal: 400;
+      --font-weight-light: 300;
+
+      --h1-font-size: 56px;
+      --h2-font-size: 48px;
+      --h3-font-size: 38px;
+      --h4-font-size: 34px;
+      --h5-font-size: 30px;
+      --h6-font-size: 24px;
+      --p-font-size: 18px;
+      --base-font-size: 16px;
+      --button-font-size: 20px;
+
+      --border-radius-large: 100%;
+      --border-radius-medium: 80px;
+      --border-radius-small: 40px;
+    }
+
+
+    body {
+      font-family: var(--base-font-family);
+    }
+
+
+    /*---------------------------------------
+       TYPOGRAPHY              
+    -----------------------------------------*/
+
+    h1 {
+      font-size: var(--h1-font-size);
+    }
+
+    h1,
+    h3 {
+      font-weight: var(--font-weight-light);
+    }
+
+    h2 {
+      font-size: var(--h2-font-size);
+    }
+
+    h3 {
+      font-size: var(--h3-font-size);
+    }
+
+    h4 {
+      font-size: var(--h4-font-size);
+    }
+
+    h5 {
+      font-size: var(--h5-font-size);
+    }
+
+    h6 {
+      font-weight: var(--font-weight-bold);
+      font-size: var(--h6-font-size);
+    }
+
+    p {
+      color: var(--p-color);
+      font-size: var(--p-font-size);
+      font-weight: var(--font-weight-light);
+      letter-spacing: 0.3px;
+      line-height: 2em;
+    }
+
+    .section-padding {
+      padding: 6rem 0;
+    }
+
+    .custom-icon {
+      font-size: 12px;
+      position: relative;
+      bottom: 3px;
+      left: 5px;
+      transform: rotate(-25deg);
+    }
+
+
+    /* CUSTOM BUTTON */
+    .custom-btn {
+      background: var(--dark-color);
+      border: none;
+      border-radius: var(--border-radius-medium);
+      color: var(--white-color);
+      letter-spacing: 0.2px;
+      padding: 6px 36px 10px 36px;
+      font-size: var(--button-font-size);
+      white-space: nowrap;
+    }
+
+    .custom-btn:hover,
+    .custom-btn:focus {
+      color: var(--dark-color);
+      background: var(--primary-color);
+    }
+
+
+    /*---------------------------------------
+       GENERAL               
+    -----------------------------------------*/
+
+    * {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+
+    *::before,
+    *::after {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+
+    a {
+      color: var(--dark-color);
+      text-decoration: none;
+      transition: all 0.4s linear;
+    }
+
+    a:hover {
+      color: var(--dark-color);
+      text-decoration: none;
+    }
+
+
+    /*---------------------------------------
+       MENU                
+    -----------------------------------------*/
+
+    .navbar {
+      background: transparent;
+      padding: 0.3rem 1rem;
+      transition: all 300ms ease-in-out;
+      position: absolute;
+      z-index: 99;
+      top: 0;
+      right: 0;
+      left: 0;
+      opacity: 0;
+    }
+
+    .navbar.scroll {
+      background: var(--menu-bg-color);
+      padding: 0.5rem 1rem;
+      position: fixed;
+      opacity: 1;
+    }
+
+    .navbar-brand {
+      color: var(--white-color);
+      font-weight: var(--font-weight-light);
+      font-size: var(--h4-font-size);
+    }
+
+    .navbar .custom-btn {
+      background: var(--primary-color);
+      color: var(--dark-color);
+    }
+
+    .contact-form #submit-button:hover,
+    .navbar .custom-btn:hover {
+      background: var(--dark-color);
+      color: var(--white-color);
+    }
+
+    .navbar-expand-lg .navbar-nav .nav-link {
+      margin: 0 1.5rem;
+      padding: 0;
+    }
+
+    .nav-item .nav-link.active,
+    .nav-item .nav-link:hover {
+      color: var(--gray-color);
+    }
+
+    .nav-item .nav-link.active,
+    .nav-item .nav-link:hover {
+      border-bottom-color: var(--primary-color);
+    }
+
+    .nav-link {
+      color: var(--gray-color);
+      font-weight: var(--font-weight-light);
+      font-size: var(--base-font-size);
+      border-bottom: 1px solid transparent;
+    }
+
+    .navbar-toggler {
+      border: 0;
+      padding: 0;
+      cursor: pointer;
+      margin: 0 10px 0 0;
+      width: 30px;
+      height: 35px;
+      outline: none;
+    }
+
+    .navbar-toggler:focus {
+      outline: none;
+    }
+
+    .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
+      background: transparent;
+    }
+
+    .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::before,
+    .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::after {
+      transition: top 300ms 50ms ease, -webkit-transform 300ms 350ms ease;
+      transition: top 300ms 50ms ease, transform 300ms 350ms ease;
+      transition: top 300ms 50ms ease, transform 300ms 350ms ease, -webkit-transform 300ms 350ms ease;
+      top: 0;
+    }
+
+    .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::before {
+      transform: rotate(45deg);
+    }
+
+    .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::after {
+      transform: rotate(-45deg);
+    }
+
+
+    .navbar-toggler .navbar-toggler-icon {
+      background: var(--white-color);
+      transition: background 10ms 300ms ease;
+      display: block;
+      width: 30px;
+      height: 2px;
+      position: relative;
+    }
+
+    .navbar-toggler .navbar-toggler-icon::before,
+    .navbar-toggler .navbar-toggler-icon::after {
+      transition: top 300ms 350ms ease, -webkit-transform 300ms 50ms ease;
+      transition: top 300ms 350ms ease, transform 300ms 50ms ease;
+      transition: top 300ms 350ms ease, transform 300ms 50ms ease, -webkit-transform 300ms 50ms ease;
+      position: absolute;
+      right: 0;
+      left: 0;
+      background: var(--white-color);
+      width: 30px;
+      height: 2px;
+      content: '';
+    }
+
+    .navbar-toggler .navbar-toggler-icon::before {
+      top: -8px;
+    }
+
+    .navbar-toggler .navbar-toggler-icon::after {
+      top: 8px;
+    }
+
+
+
+    /*---------------------------------------
+       HERO                
+    -----------------------------------------*/
+
+    .hero-title,
+    .email-link {
+      background: var(--dark-color);
+      border-radius: var(--border-radius-medium);
+      color: var(--white-color);
+      display: inline-block;
+      margin: 0.5rem 0;
+      padding: 0.5rem 2rem 1.5rem 2rem;
+      font-size: 2.2em;
+    }
+
+    .email-link {
+      background: var(--primary-color);
+      color: var(--dark-color);
+      font-size: var(--h4-font-size);
+      padding: 0.5rem 2rem 1rem 2rem;
+    }
+
+    .email-link:hover {
+      background: var(--dark-color);
+      color: var(--white-color);
+    }
+
+
+    /*---------------------------------------
+       ABOUT                
+    -----------------------------------------*/
+
+    .about-third {
+      margin: 2.2em -0.8em;
+    }
+
+    .about-image {
+      border-radius: var(--border-radius-small);
+    }
+
+    .profile-list li {
+      margin: 0.3rem 0;
+    }
+
+    .profile-list strong {
+      display: inline-block;
+      width: 30%;
+      margin-right: 1rem;
+    }
+
+
+    /*---------------------------------------
+       FAQ                 
+    -----------------------------------------*/
+
+    .faq .card-header {
+      padding: 0;
+    }
+
+    .faq .btn-link {
+      color: var(--dark-color);
+      font-size: var(--h6-font-size);
+      text-align: left;
+      display: block;
+      width: 100%;
+      padding: 1rem 2rem;
+    }
+
+    .faq .btn-link:focus,
+    .faq .btn-link:hover {
+      color: var(--dark-color);
+      text-decoration: none;
+    }
+
+    .faq .card-body {
+      padding: 2rem;
+    }
+
+    .faq-info-text {
+      font-size: var(--base-font-size);
+      display: block;
+      margin: 1.5rem 2rem 0 2rem;
+    }
+
+
+    /*---------------------------------------
+       TESTIMONIALS               
+    -----------------------------------------*/
+
+    .testimonials {
+      background: #f9f9f9;
+    }
+
+    .testimonials-image {
+      margin: 0 1rem 1rem 1rem;
+    }
+
+    .testimonials-image img {
+      border-radius: var(--border-radius-medium);
+    }
+
+    .testimonials-info {
+      width: 100%;
+    }
+
+    .testimonials .owl-theme .owl-nav.disabled+.owl-dots {
+      margin-top: 2rem;
+    }
+
+    .testimonials .owl-theme .owl-dots .owl-dot {
+      outline: none;
+    }
+
+    .testimonials .owl-theme .owl-dots .owl-dot span {
+      width: 30px;
+      height: 3px;
+      margin: 5px;
+    }
+
+    .testimonials .owl-theme .owl-dots .owl-dot.active span,
+    .testimonials .owl-theme .owl-dots .owl-dot:hover span {
+      background: var(--primary-color);
+    }
+
+
+    /*---------------------------------------
+       CONTACT               
+    -----------------------------------------*/
+
+    .contact-form .form-control {
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid rgba(142, 140, 140, 0.35);
+      box-shadow: none;
+      border-radius: 0;
+      -webkit-appearance: none;
+      outline: none;
+      color: var(--dark-color);
+      font-weight: var(--font-weight-light);
+      padding-left: 0;
+      cursor: text;
+    }
+
+    .contact-form input {
+      height: calc(2.25rem + 10px);
+    }
+
+    .contact-form .form-group {
+      margin: 0 0 1rem;
+      position: relative;
+    }
+
+    .contact-form .form-control,
+    .webform-label {
+      transition: all 0.4s;
+      touch-action: manipulation;
+    }
+
+    .webform-label {
+      cursor: text;
+      font-size: 12px;
+      font-weight: var(--font-weight-light);
+      margin-bottom: 5px;
+    }
+
+    .contact-form .form-control:placeholder-shown+.webform-label {
+      cursor: text;
+      max-width: 66.66%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transform-origin: left bottom;
+      transform: translate(0, 2.125rem) scale(1.5);
+    }
+
+    .contact-form ::-webkit-input-placeholder {
+      opacity: 0;
+      transition: inherit;
+      color: var(--dark-color);
+    }
+
+    .contact-form ::-moz-placeholder {
+      opacity: 0;
+      transition: inherit;
+      color: var(--dark-color);
+    }
+
+    .contact-form .form-control:focus::-webkit-input-placeholder {
+      opacity: 1;
+    }
+
+    .contact-form .form-control:focus::-moz-placeholder {
+      opacity: 1;
+    }
+
+    .contact-form .form-control:not(:placeholder-shown)+.webform-label,
+    .contact-form .form-control:focus+.webform-label {
+      transform: translate(0, 0) scale(1);
+      cursor: pointer;
+      color: var(--gray-color);
+    }
+
+    .contact-form #submit-button {
+      background: var(--primary-color);
+      border: none;
+      border-radius: var(--border-radius-medium);
+      color: var(--dark-color);
+      cursor: pointer;
+      font-size: var(--p-font-size);
+      line-height: 0;
+      margin-top: 2.5rem;
+      padding: 1.5rem 1.8rem 1.8rem 1.8rem;
+      white-space: nowrap;
+      max-width: 190px;
+    }
+
+    .copyright-text {
+      font-size: var(--base-font-size);
+    }
+
+
+    /*---------------------------------------
+       SOCIAL LINKS              
+    -----------------------------------------*/
+
+    .social-links {
+      margin: 40px 0;
+      padding: 0;
+    }
+
+    .social-links li {
+      display: inline-block;
+      list-style: none;
+    }
+
+    .social-links a {
+      display: inline-block;
+      color: var(--p-color);
+      font-size: var(--h6-font-size);
+      margin: 5px 20px 5px 0;
+    }
+
+    .social-links a:hover {
+      color: var(--dark-color);
+    }
+
+
+    /*---------------------------------------
+       RESPONSIVE STYLES              
+    -----------------------------------------*/
+
+    @media screen and (max-width: 1200px) {
+      h1 {
+        font-size: 42px;
+      }
+
+      h2 {
+        font-size: 36px;
+      }
+
+      h3 {
+        font-size: 32px;
+      }
+
+      h4 {
+        font-size: 28px;
+      }
+
+      .email-link {
+        font-size: 28px;
+      }
+    }
+
+    @media screen and (max-width: 992px) {
+
+      .hero-title {
+        font-size: 1.8em;
+        padding-bottom: 1rem;
+      }
+
+      .email-link {
+        font-size: 22px;
+        padding: 0.5rem 2rem 0.7rem 2rem;
+      }
+    }
+
+    @media screen and (max-width: 991px) {
+      .navbar-nav {
+        margin: 1rem 0;
+      }
+
+      .navbar-expand-lg .navbar-nav .nav-link {
+        display: inline-block;
+        margin: 5px 0.5rem;
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+
+      .hero-text {
+        position: relative;
+        top: 1.5rem;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+
+      .hero-title {
+        font-size: 26px;
+      }
+
+      .email-link {
+        font-size: 20px;
+        padding: 0.3rem 2rem 0.6rem 2rem;
+      }
+    }
+  </style></head>
+
+<body data-spy="scroll" data-target="#navbarNav" data-offset="50">
+
+  <!-- MENU BAR -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+
+      <a class="navbar-brand" href="#">
+        Ben Resume
+      </a>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item">
+            <a href="#intro" class="nav-link smoothScroll">Introduction</a>
+          </li>
+
+          <li class="nav-item">
+            <a href="#about" class="nav-link smoothScroll">About Me</a>
+          </li>
+
+          <li class="nav-item">
+            <a href="#testimonials" class="nav-link smoothScroll">Reviews</a>
+          </li>
+
+          <li class="nav-item">
+            <a href="#contact" class="nav-link smoothScroll">Contact</a>
+          </li>
+        </ul>
+
+        <div class="mt-lg-0 mt-3 mb-4 mb-lg-0">
+          <a href="#" class="custom-btn btn" download="">Download CV</a>
+        </div>
+      </div>
+
+    </div>
+  </nav>
+
+
+  <!-- HERO -->
+  <section class="hero d-flex flex-column justify-content-center align-items-center" id="intro">
+
+    <div class="container">
+      <div class="row">
+
+        <div class="mx-auto col-lg-5 col-md-5 col-10">
+          <img src="https://imgur.com/JwDBUF3.jpg" class="img-fluid" alt="Ben Resume HTML Template">
+        </div>
+
+        <div class="d-flex flex-column justify-content-center align-items-center col-lg-7 col-md-7 col-12">
+          <div class="hero-text">
+
+            <h1 class="hero-title">👋 Fahad, a Computer industry nomad</h1>
+
+            <a href="#" class="email-link">
+              fahad@gmail.com
+            </a>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <section class="about section-padding" id="about">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-lg-6 col-md-6 col-12">
+          <h3 class="mb-4">This is Fahad's Resume</h3>
+
+          <p>Ben Resume HTML Template is brought to you by <a rel="nofollow" href="https://www.tooplate.com" target="_parent">Tooplate website</a>. You can feel free to edit and use this page for your small site.
+            You are allowed to use this HTML template for any kind of purpose.</p>
+
+          <p>However, please do not re-distribute the downloadable template ZIP file on any template collection website.
+            This is strongly prohibited. Please contact Tooplate for more information.</p>
+
+          <ul class="mt-4 mb-5 mb-lg-0 profile-list list-unstyled">
+            <li><strong>Full Name :</strong> Fahad </li>
+
+            <li><strong>Date of Birth:</strong> 26 September 1999</li>
+
+            <li><strong>Website :</strong> company.co</li>
+
+            <li><strong>Email :</strong> fahad@gmail.com</li>
+
+            <li><strong>Location :</strong> Karachi, Sindh, Pakistan</li>
+          </ul>
+        </div>
+
+        <div class="col-lg-5 mx-auto col-md-6 col-12">
+          <img src="https://imgur.com/MHIBb95.jpg" class="about-image img-fluid" alt="Ben's Resume HTML Template">
+        </div>
+
+      </div>
+      <div class="row about-third">
+        <div class="col-lg-4 col-md-4 col-12">
+          <h3>Integer volutpat</h3>
+          <p>Sed eu risus tincidunt, finibus dolor non, gravida ex. Donec lacinia mi nec erat tempus, vel consectetur
+            ante scelerisque. Ut blandit, risus in venenatis ultricies, lacus tellus fermentum.</p>
+        </div>
+        <div class="col-lg-4 col-md-4 col-12">
+          <h3>Mauris semper</h3>
+          <p>Cras et nisl vestibulum, accumsan elit sed, pretium enim. Vestibulum in condimentum magna. Maecenas quam
+            magna, iaculis eu turpis et, commodo pulvinar leo.</p>
+        </div>
+        <div class="col-lg-4 col-md-4 col-12">
+          <h3>Integer id neque</h3>
+          <p>Duis at mollis leo, venenatis congue ex. Cras urna dui, gravida euismod lectus et, cursus tempor nulla.
+            Praesent at turpis quis ex tristique gravida quis eget eros.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- TESTIMONIAL -->
+  <section class="testimonials section-padding" id="testimonials">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-12">
+          <h3 class="mb-5 text-center">What People say</h3>
+
+          <div class="owl-carousel owl-theme" id="testimonials-carousel">
+            <div class="item">
+              <div class="testimonials-thumb d-flex">
+                <div class="testimonials-image">
+                  <img src="https://imgur.com/7y0y61b.jpg" class="img-fluid" alt="testimonials image">
+                </div>
+
+                <div class="testimonials-info">
+                  <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem.</p>
+
+                  <h6 class="mb-0">Ben</h6>
+                  <span>Art Director</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="testimonials-thumb d-flex">
+                <div class="testimonials-image">
+                  <img src="https://imgur.com/l9LWVtZ.jpg" class="img-fluid" alt="testimonials image">
+                </div>
+
+                <div class="testimonials-info">
+                  <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem.</p>
+
+                  <h6 class="mb-0">Marie</h6>
+                  <span>Marketing Consultant</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="testimonials-thumb d-flex">
+                <div class="testimonials-image">
+                  <img src="https://imgur.com/3emlh7z.jpg" class="img-fluid" alt="testimonials image">
+                </div>
+
+                <div class="testimonials-info">
+                  <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem.</p>
+
+                  <h6 class="mb-0">Jen</h6>
+                  <span>Product Manager</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="testimonials-thumb d-flex">
+                <div class="testimonials-image">
+                  <img src="https://imgur.com/m8jKfrR.jpg" class="img-fluid" alt="testimonials image">
+                </div>
+
+                <div class="testimonials-info">
+                  <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem.</p>
+
+                  <h6 class="mb-0">Wilson</h6>
+                  <span>Web Developer</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FAQ -->
+  <section class="faq section-padding">
+
+    <div class="container">
+
+      <div class="row">
+
+        <div class="col-lg-12 col-12">
+
+          <h3 class="mb-5">Frequently Asked Questions</h3>
+
+          <div class="accordion" id="accordionExample">
+            <div class="card">
+              <div class="card-header" id="headingOne">
+                <h2 class="mb-0">
+                  <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Are those HTML templates absolutely free for any kind of usage?
+                  </button>
+                </h2>
+              </div>
+
+              <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body">
+                  <p>Yes, they are 100% free and there is no hidden charge.</p>
+
+                  <p>They can be used for your commercial websites.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header" id="headingTwo">
+                <h2 class="mb-0">
+                  <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Can I use them as a CMS theme or a part of website builder?
+                  </button>
+                </h2>
+              </div>
+              <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                <div class="card-body">
+                  <p>Yes, you can use them.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header" id="headingThree">
+                <h2 class="mb-0">
+                  <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    I cannot find a suitable HTML template. Can I request new template?
+                  </button>
+                </h2>
+              </div>
+              <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                <div class="card-body">
+                  <p>Yes, please tell us what you need. We will try our best to fulfill it.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header" id="headingFour">
+                <h2 class="mb-0">
+                  <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                    Can I redistribute your templates?
+                  </button>
+                </h2>
+              </div>
+              <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+                <div class="card-body">
+                  <p>No, this is totally NOT allowed. Please do not redistribute our HTML templates.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header" id="headingFive">
+                <h2 class="mb-0">
+                  <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                    How do I support Tooplate?
+                  </button>
+                </h2>
+              </div>
+              <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
+                <div class="card-body">
+                  <p>Please spread a word about Tooplate website to your colleagues and friends.</p>
+                </div>
+              </div>
+            </div>
+
+            <span class="faq-info-text">Please send us a message if you have anything to say. Send an email message to
+              <strong>contact (at) tooplate (dot) com</strong></span>
+
+          </div>
+
+        </div><!-- col -->
+      </div><!-- row -->
+    </div><!-- container -->
+  </section>
+
+
+  <section class="contact section-padding pt-0" id="contact">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-lg-6 col-md-6 col-12">
+          <form action="#" method="get" class="contact-form webform" role="form">
+
+            <div class="form-group d-flex flex-column-reverse">
+              <input type="text" class="form-control" name="cf-name" id="cf-name" placeholder="Your Name">
+
+              <label for="cf-name" class="webform-label">Full Name</label>
+            </div>
+
+            <div class="form-group d-flex flex-column-reverse">
+              <input type="email" class="form-control" name="cf-email" id="cf-email" placeholder="Your Email">
+
+              <label for="cf-email" class="webform-label">Your Email</label>
+            </div>
+
+            <div class="form-group d-flex flex-column-reverse">
+              <textarea class="form-control" rows="5" name="cf-message" id="cf-message" placeholder="Your Message"></textarea>
+
+              <label for="cf-message" class="webform-label">Message</label>
+            </div>
+
+            <button type="submit" class="form-control" id="submit-button" name="submit">Send</button>
+          </form>
+        </div>
+
+        <div class="mx-auto col-lg-4 col-md-6 col-12">
+          <h3 class="my-4 pt-4 pt-lg-0">Say hello</h3>
+
+          <p class="mb-1">55665566</p>
+
+          <p>
+            <a href="#">
+              fahad@gmail.com
+              <i class="fas fa-arrow-right custom-icon"></i>
+            </a>
+          </p>
+
+          <ul class="social-links mt-2">
+            <li><a href="https://fb.com/tooplate" rel="noopener" class="fab fa-facebook"></a></li>
+            <li><a href="#" rel="noopener" class="fab fa-twitter"></a></li>
+            <li><a href="#" rel="noopener" class="fab fa-instagram"></a></li>
+            <li><a href="#" rel="noopener" class="fab fa-linkedin"></a></li>
+            <li><a href="#" rel="noopener" class="fab fa-youtube"></a></li>
+          </ul>
+
+          <p class="copyright-text mt-5 pt-3">Copyright © 2020 Fahad Resume Page</p>
+
+          <p>Design: <a href="https://www.tooplate.com" title="free HTML templates" target="_blank">Tooplate</a></p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    /**
+ * SmoothScroll
+ * This helper script created by DWUser.com.  Copyright 2013 DWUser.com.  
+ * Dual-licensed under the GPL and MIT licenses.  
+ * All individual scripts remain property of their copyrighters.
+ * Date: 10-Sep-2013
+ * Version: 1.0.1
+ */
+    if (!window['jQuery']) alert('The jQuery library must be included before the smoothscroll.js file.  The plugin will not work propery.');
+
+    /**
+     * jQuery.ScrollTo - Easy element scrolling using jQuery.
+     * Copyright (c) 2007-2013 Ariel Flesler - aflesler(at)gmail(dot)com | http://flesler.blogspot.com
+     * Dual licensed under MIT and GPL.
+     * @author Ariel Flesler
+     * @version 1.4.3.1
+     */
+    ; (function ($) { var h = $.scrollTo = function (a, b, c) { $(window).scrollTo(a, b, c) }; h.defaults = { axis: 'xy', duration: parseFloat($.fn.jquery) >= 1.3 ? 0 : 1, limit: true }; h.window = function (a) { return $(window)._scrollable() }; $.fn._scrollable = function () { return this.map(function () { var a = this, isWin = !a.nodeName || $.inArray(a.nodeName.toLowerCase(), ['iframe', '#document', 'html', 'body']) != -1; if (!isWin) return a; var b = (a.contentWindow || a).document || a.ownerDocument || a; return /webkit/i.test(navigator.userAgent) || b.compatMode == 'BackCompat' ? b.body : b.documentElement }) }; $.fn.scrollTo = function (e, f, g) { if (typeof f == 'object') { g = f; f = 0 } if (typeof g == 'function') g = { onAfter: g }; if (e == 'max') e = 9e9; g = $.extend({}, h.defaults, g); f = f || g.duration; g.queue = g.queue && g.axis.length > 1; if (g.queue) f /= 2; g.offset = both(g.offset); g.over = both(g.over); return this._scrollable().each(function () { if (e == null) return; var d = this, $elem = $(d), targ = e, toff, attr = {}, win = $elem.is('html,body'); switch (typeof targ) { case 'number': case 'string': if (/^([+-]=)?\d+(\.\d+)?(px|%)?$/.test(targ)) { targ = both(targ); break } targ = $(targ, this); if (!targ.length) return; case 'object': if (targ.is || targ.style) toff = (targ = $(targ)).offset() }$.each(g.axis.split(''), function (i, a) { var b = a == 'x' ? 'Left' : 'Top', pos = b.toLowerCase(), key = 'scroll' + b, old = d[key], max = h.max(d, a); if (toff) { attr[key] = toff[pos] + (win ? 0 : old - $elem.offset()[pos]); if (g.margin) { attr[key] -= parseInt(targ.css('margin' + b)) || 0; attr[key] -= parseInt(targ.css('border' + b + 'Width')) || 0 } attr[key] += g.offset[pos] || 0; if (g.over[pos]) attr[key] += targ[a == 'x' ? 'width' : 'height']() * g.over[pos] } else { var c = targ[pos]; attr[key] = c.slice && c.slice(-1) == '%' ? parseFloat(c) / 100 * max : c } if (g.limit && /^\d+$/.test(attr[key])) attr[key] = attr[key] <= 0 ? 0 : Math.min(attr[key], max); if (!i && g.queue) { if (old != attr[key]) animate(g.onAfterFirst); delete attr[key] } }); animate(g.onAfter); function animate(a) { $elem.animate(attr, f, g.easing, a && function () { a.call(this, e, g) }) } }).end() }; h.max = function (a, b) { var c = b == 'x' ? 'Width' : 'Height', scroll = 'scroll' + c; if (!$(a).is('html,body')) return a[scroll] - $(a)[c.toLowerCase()](); var d = 'client' + c, html = a.ownerDocument.documentElement, body = a.ownerDocument.body; return Math.max(html[scroll], body[scroll]) - Math.min(html[d], body[d]) }; function both(a) { return typeof a == 'object' ? a : { top: a, left: a } } })(jQuery);
+
+    /**
+     * jQuery.LocalScroll
+     * Copyright (c) 2007-2010 Ariel Flesler - aflesler(at)gmail(dot)com | http://flesler.blogspot.com
+     * Dual licensed under MIT and GPL.
+     * Date: 05/31/2010
+     * @author Ariel Flesler
+     * @version 1.2.8b
+     **/
+    ; (function (b) {
+      function g(a, e, d) {
+        var h = e.hash.slice(1), f = document.getElementById(h) || document.getElementsByName(h)[0]; if (f) {
+          a && a.preventDefault(); var c = b(d.target); if (!(d.lock && c.is(":animated") || d.onBefore && !1 === d.onBefore(a, f, c))) {
+            d.stop && c._scrollable().stop(!0); if (d.hash) { var a = f.id == h ? "id" : "name", g = b("<a> </a>").attr(a, h).css({ position: "absolute", top: b(window).scrollTop(), left: b(window).scrollLeft() }); f[a] = ""; b("body").prepend(g); location = e.hash; g.remove(); f[a] = h } c.scrollTo(f, d).trigger("notify.serialScroll",
+              [f])
+          }
+        }
+      } var i = location.href.replace(/#.*/, ""), c = b.localScroll = function (a) { b("body").localScroll(a) }; c.defaults = { duration: 1E3, axis: "y", event: "click", stop: !0, target: window, reset: !0 }; c.hash = function (a) { if (location.hash) { a = b.extend({}, c.defaults, a); a.hash = !1; if (a.reset) { var e = a.duration; delete a.duration; b(a.target).scrollTo(0, a); a.duration = e } g(0, location, a) } }; b.fn.localScroll = function (a) {
+        function e() { return !!this.href && !!this.hash && this.href.replace(this.hash, "") == i && (!a.filter || b(this).is(a.filter)) }
+        a = b.extend({}, c.defaults, a); return a.lazy ? this.bind(a.event, function (d) { var c = b([d.target, d.target.parentNode]).filter(e)[0]; c && g(d, c, a) }) : this.find("a,area").filter(e).bind(a.event, function (b) { g(b, this, a) }).end().end()
+      }
+    })(jQuery);
+
+    // Initialize all .smoothScroll links
+    jQuery(function ($) { $.localScroll({ filter: '.smoothScroll' }); });
+
+
+    $(function () {
+      'use strict'
+
+      // MENU
+      $('.navbar .nav-link').on('click', function () {
+        $(".navbar-collapse").collapse('hide');
+      });
+
+      $(window).on('scroll', function () {
+
+        /*----------------------------------------------------*/
+        /*  Navigtion Menu Scroll
+        /*----------------------------------------------------*/
+
+        var b = $(window).scrollTop();
+
+        if (b > 72) {
+          $(".navbar").addClass("scroll");
+        } else {
+          $(".navbar").removeClass("scroll");
+        }
+      });
+
+      // TESTIMONIALS CAROUSEL
+      $('#testimonials-carousel').owlCarousel({
+        loop: true,
+        margin: 10,
+        responsiveClass: true,
+        responsive: {
+          0: {
+            items: 1,
+          },
+          900: {
+            items: 2,
+          },
+          1200: {
+            items: 3,
+            loop: false
+          }
+        }
+      })
+
+      // SMOOTHSCROLL
+      $(function () {
+        $('.navbar .nav-link').on('click', function (event) {
+          var $anchor = $(this);
+          $('html, body').stop().animate({
+            scrollTop: $($anchor.attr('href')).offset().top - 49
+          }, 1000);
+          event.preventDefault();
+        });
+      });
+
+    });
+
+
+  </script>
+
+
+
+</body></html>
